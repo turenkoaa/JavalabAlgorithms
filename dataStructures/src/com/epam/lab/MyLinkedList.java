@@ -53,6 +53,7 @@ public class MyLinkedList<T> {
 
         if (value.equals(head.value)) {
             head = head.next;
+            return true;
         }
 
         Node<T> previous = head;

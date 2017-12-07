@@ -8,8 +8,8 @@ public class BalancedBraces {
     private char[] chars;
 
     private static final Map<Character, Character> appropriateBraces;
-    private static final List<Character> validOpenBraces;
-    private static final List<Character> validCloseBraces;
+    private static final List<Character> openBraces;
+    private static final List<Character> closeBraces;
 
     static {
         appropriateBraces = new HashMap<>();
@@ -17,8 +17,8 @@ public class BalancedBraces {
         appropriateBraces.put(']', '[');
         appropriateBraces.put(')', '(');
 
-        validOpenBraces = Arrays.asList('{', '[', '(');
-        validCloseBraces = Arrays.asList('}', ']', ')');
+        openBraces = Arrays.asList('{', '[', '(');
+        closeBraces = Arrays.asList('}', ']', ')');
     }
 
     public BalancedBraces(String string) {
@@ -28,12 +28,11 @@ public class BalancedBraces {
 
     public boolean validateString() {
 
-        for (int i = 0; i < chars.length; i++) {
-            char letter = chars[i];
-            if (validOpenBraces.contains(letter)) {
+        for (char letter: chars){
+            if (openBraces.contains(letter)) {
                 foundOpenBraces.push(letter);
             }
-            if (validCloseBraces.contains(letter) &&
+            if (closeBraces.contains(letter) &&
                     (foundOpenBraces.empty() || !appropriateBraces.get(letter).equals(foundOpenBraces.pop()))) {
                 return false;
             }
